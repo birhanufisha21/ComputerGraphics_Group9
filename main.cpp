@@ -31,29 +31,3 @@ void drawVertexWaved(float x, float y) {
     glVertex2f(x, y + yOffset);
 }
 
-void drawMaasaiShapeRaw(float maxWidth, float height, float P) {
-    glBegin(GL_POLYGON);
-    for (int i = 0; i <= 100; i++) {
-        float t = -1.0f + 2.0f * i / 100.0f;
-        float width = maxWidth * pow(1.0f - pow(fabs(t), P), 1.0f / P);
-        drawVertexWaved(width, t * height);
-    }
-    for (int i = 100; i >= 0; i--) {
-        float t = -1.0f + 2.0f * i / 100.0f;
-        float width = -maxWidth * pow(1.0f - pow(fabs(t), P), 1.0f / P);
-        drawVertexWaved(width, t * height);
-    }
-    glEnd();
-}
-// Placeholder functions for members to fill
-void drawFlagPole() {}
-void drawMaasaiShapeRaw(float mw, float h, float p) {}
-void drawSpear(float angle) {}
-void drawShieldEmblem() {}
-void renderKenyaFlag() {}
-void drawNoteShape() {}
-void renderTikTokLogo() {}
-void drawVertexWaved(float x, float y) { glVertex2f(x, y); } // Base version
-
-// System functions (Keyboard, Display, Reshape) go here...
-// (Paste the 'display', 'keyboard', 'reshape', and 'main' functions from your original code)
