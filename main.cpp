@@ -96,3 +96,46 @@ void drawSpear(float angle) {
     glPopMatrix();
 
     glPopMatrix();
+void drawShieldEmblem() {
+    setKBlack();
+    glBegin(GL_POLYGON);
+    for (int i = 0; i <= 100; i++) {
+        float t = -1.0f + 2.0f * i / 100.0f;
+        float width = 43.0f * pow(1.0f - pow(fabs(t), 1.6f), 1.0f / 1.6f);
+        float yBase = (t > 0.3f) ? t * 83.0f : 0.3f * 83.0f;
+        drawVertexWaved(width, yBase);
+    }
+    for (int i = 100; i >= 0; i--) {
+        float t = -1.0f + 2.0f * i / 100.0f;
+        float width = -43.0f * pow(1.0f - pow(fabs(t), 1.6f), 1.0f / 1.6f);
+        float yBase = (t > 0.3f) ? t * 83.0f : 0.3f * 83.0f;
+        drawVertexWaved(width, yBase);
+    }
+    glEnd();
+
+    setKRed(); drawMaasaiShapeRaw(43.0f, 83.0f, 1.6f);
+
+    setKBlack();
+    glPushMatrix(); glTranslatef(-36.0f, 0.0f, 0.0f); drawMaasaiShapeRaw(7.0f, 32.5f, 1.6f); glPopMatrix();
+    glPushMatrix(); glTranslatef(36.0f, 0.0f, 0.0f);  drawMaasaiShapeRaw(7.0f, 32.5f, 1.6f); glPopMatrix();
+
+    setKWhite();
+    glPushMatrix(); glTranslatef(0.0f, 42.0f, 0.0f);  drawMaasaiShapeRaw(7.0f, 38.0f, 1.6f);  glPopMatrix();
+    glPushMatrix(); glTranslatef(0.0f, -42.0f, 0.0f); drawMaasaiShapeRaw(7.0f, 38.0f, 1.6f);  glPopMatrix();
+
+    setKRed();
+    glBegin(GL_QUADS);
+        drawVertexWaved(-1.5f, -80.0f);
+        drawVertexWaved(1.5f, -80.0f);
+        drawVertexWaved(1.5f, 80.0f);
+        drawVertexWaved(-1.5f, 80.0f);
+    glEnd();
+
+    setKWhite();
+    glBegin(GL_POLYGON);
+    for(int i = 0; i < 360; i++) {
+        float rad = i * 3.14159f / 180.0f;
+        drawVertexWaved(cos(rad) * 4.5f, sin(rad) * 7.0f);
+    }
+    glEnd();
+}
