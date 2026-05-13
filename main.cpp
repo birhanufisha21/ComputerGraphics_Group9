@@ -139,3 +139,78 @@ void drawShieldEmblem() {
     }
     glEnd();
 }
+void renderKenyaFlag() {
+    flagTime += WAVE_SPEED;
+    if (flagTime > 6.28f * 2.0f) flagTime -= 6.28f * 2.0f;
+
+    drawFlagPole();
+
+    // Black Stripe
+    setKBlack(); glBegin(GL_QUADS);
+        drawVertexWaved(-200, 44); drawVertexWaved(200, 44);
+        drawVertexWaved(200, 100); drawVertexWaved(-200, 100);
+    glEnd();
+
+    // White Stripe
+    setKWhite(); glBegin(GL_QUADS);
+        drawVertexWaved(-200, 32); drawVertexWaved(200, 32);
+        drawVertexWaved(200, 44); drawVertexWaved(-200, 44);
+    glEnd();
+
+    // Red Stripe
+    setKRed();   glBegin(GL_QUADS);
+        drawVertexWaved(-200, -32); drawVertexWaved(200, -32);
+        drawVertexWaved(200, 32); drawVertexWaved(-200, 32);
+    glEnd();
+
+    // White Stripe
+    setKWhite(); glBegin(GL_QUADS);
+        drawVertexWaved(-200, -44); drawVertexWaved(200, -44);
+        drawVertexWaved(200, -32); drawVertexWaved(-200, -32);
+    glEnd();
+
+    // Green Stripe
+    setKGreen(); glBegin(GL_QUADS);
+        drawVertexWaved(-200, -100); drawVertexWaved(200, -100);
+        drawVertexWaved(200, -44); drawVertexWaved(-200, -44);
+    glEnd();
+
+    drawSpear(42.0f);
+    drawSpear(-42.0f);
+    drawShieldEmblem();
+}
+
+// ==========================================
+// SECTION 2: TIKTOK LOGO FUNCTIONS
+// ==========================================
+
+void drawNoteShape() {
+    const float pi = 3.14159f;
+    float w = 30.0f; // Scaled up to match flag coordinates
+    float cx1 = -w, cy1 = -35.0f;
+    float rIn1 = w, rOut1 = w * 2.0f;
+
+    glBegin(GL_QUAD_STRIP);
+    for (int i = 90; i <= 370; i += 5) {
+        float rad = i * pi / 180.0f;
+        glVertex2f(cx1 + rIn1 * cos(rad), cy1 + rIn1 * sin(rad));
+        glVertex2f(cx1 + rOut1 * cos(rad), cy1 + rOut1 * sin(rad));
+    }
+    glEnd();
+
+    glBegin(GL_QUADS);
+        glVertex2f(0.0f, -35.0f); glVertex2f(w, -35.0f);
+        glVertex2f(w, 120.0f);    glVertex2f(0.0f, 120.0f);
+    glEnd();
+
+    float hookRadius = w * 2.2f;
+    float cx2 = w + hookRadius - 30.0f;
+    float cy2 = 120.0f;
+    glBegin(GL_QUAD_STRIP);
+    for (int i = 180; i <= 270; i += 5) {
+        float rad = i * pi / 180.0f;
+        glVertex2f(cx2 + (hookRadius - w) * cos(rad), cy2 + (hookRadius - w) * sin(rad));
+        glVertex2f(cx2 + hookRadius * cos(rad), cy2 + hookRadius * sin(rad));
+    }
+    glEnd();
+}
