@@ -109,7 +109,7 @@ void drawSpear(float angle) {
         glTranslatef(0, 85, 0);
         drawMaasaiShapeRaw(7.0f, 28.0f, 1.6f);
     glPopMatrix();
-
+}
     // --- 2. THE WHITE FILL LAYER (Draw Second) ---
     setKWhite();
     glBegin(GL_QUADS);
