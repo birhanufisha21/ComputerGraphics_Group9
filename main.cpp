@@ -243,3 +243,64 @@ void drawNoteShape() {
     }
     glEnd();
 }
+
+void renderTikTokLogo() {
+    glScalef(scaleFactor, scaleFactor, 1.0f);
+    glRotatef(-2.0f, 0.0f, 0.0f, 1.0f);
+
+    glPushMatrix(); glTranslatef(-8.0f, 6.0f, 0.0f); setTikTokCyan(); drawNoteShape(); glPopMatrix();
+    glPushMatrix(); glTranslatef(8.0f, -6.0f, 0.0f); setTikTokMagenta(); drawNoteShape(); glPopMatrix();
+    glPushMatrix(); setTTBlack(); drawNoteShape(); glPopMatrix();
+}
+
+// ==========================================
+// SECTION 3: SYSTEM FUNCTIONS (Keyboard, Display, Reshape)
+// ==========================================
+
+void display() {
+    glClear(GL_COLOR_BUFFER_BIT);
+    glLoadIdentity();
+
+    if (currentState == FLAG) {
+        renderKenyaFlag();
+    } else {
+        renderTikTokLogo();
+    }
+
+    glutSwapBuffers();
+}
+
+void keyboard(unsigned char key, int x, int y) {
+    if (key == 8) { // Backspace Key
+        if (currentState == FLAG) currentState = TIKTOK;
+        else currentState = FLAG;
+    }
+    glutPostRedisplay();
+}
+
+void idle() {
+    // Pulse animation logic for TikTok
+    if (growing) {
+        scaleFactor += 0.001f;
+        if (scaleFactor >= 1.1f) growing = false;
+    } else {
+        scaleFactor -= 0.001f;
+        if (scaleFactor <= 0.9f) growing = true;
+    }
+    glutPostRedisplay();
+}
+
+void reshape(int w, int h) {
+    glViewport(0, 0, w, h);
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    float aspect = (float)w / (float)h;
+    if (w >= h) {
+        gluOrtho2D(-220.0 * aspect, 220.0 * aspect, -220.0, 220.0);
+    }
+    else {
+        gluOrtho2D(-220.0, 220.0, -220.0 / aspect, 220.0 / aspect);
+    }
+    glMatrixMode(GL_MODELVIEW);
+}
+
