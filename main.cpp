@@ -22,6 +22,9 @@ void setKWhite() { glColor3f(1.0f, 1.0f, 1.0f); }
 void setTikTokMagenta() { glColor3f(0.996f, 0.173f, 0.333f); }
 void setTikTokCyan()    { glColor3f(0.145f, 0.957f, 0.933f); }
 void setTTBlack()       { glColor3f(0.0f, 0.0f, 0.0f); }
+// ==========================================
+// SECTION 1: KENYA FLAG FUNCTIONS
+// ==========================================
 void drawVertexWaved(float x, float y) {
     float multiplier = (x + 200.0f) / 400.0f;
     if (multiplier < 0.0f) multiplier = 0.0f;
@@ -31,14 +34,40 @@ void drawVertexWaved(float x, float y) {
     glVertex2f(x, y + yOffset);
 }
 
-
 void drawFlagPole() {
+    // ----- MAIN POLE
     glBegin(GL_QUADS);
         glColor3f(0.0f, 0.1f, 0.4f); glVertex2f(-215, -180);
         glColor3f(0.1f, 0.4f, 0.9f); glVertex2f(-205, -180);
         glVertex2f(-205, 140);
         glColor3f(0.0f, 0.1f, 0.4f); glVertex2f(-215, 140);
     glEnd();
+    
+    glColor3f(1.0f, 0.84f, 0.0f);
+    glLineWidth(2.0f);
+    glBegin(GL_LINES);
+        
+        glVertex2f(-215, -100); glVertex2f(-205, -100);
+        glVertex2f(-215, -50);  glVertex2f(-205, -50);
+        glVertex2f(-215, 0);    glVertex2f(-205, 0);
+        glVertex2f(-215, 50);   glVertex2f(-205, 50);
+        glVertex2f(-215, 100);  glVertex2f(-205, 100);
+    glEnd();
+
+    glPointSize(4.0f);
+    glColor3f(1.0f, 1.0f, 1.0f);  // White
+    glBegin(GL_POINTS);
+        
+        glVertex2f(-210, -170);
+        glVertex2f(-210, -130);
+        glVertex2f(-210, -90);
+        glVertex2f(-210, -50);
+        glVertex2f(-210, -10);
+        glVertex2f(-210, 30);
+        glVertex2f(-210, 70);
+        glVertex2f(-210, 110);
+    glEnd();
+
     glColor3f(1.0f, 0.84f, 0.0f);
     glBegin(GL_POLYGON);
     for(int i = 0; i < 360; i += 10) {
