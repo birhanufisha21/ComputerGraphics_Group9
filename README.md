@@ -21,7 +21,7 @@
 
 ### b) Rotation (`glRotatef`)
 - **Purpose:** To orient the spears dynamically.
-- **Application:** Applied to both spears to angle them at ±33° relative to the vertical axis.
+- **Application:** Applied to both spears to angle them at ±42° relative to the vertical axis.
 - **Result:** Creates a realistic crossing effect behind the shield, adding depth to the composition.
 
 ### c) Scaling (Bonus: Implicit via Wave Animation)
@@ -30,7 +30,11 @@
 - **Significance:** Demonstrates an understanding of **parametric deformation** rather than static scaling.
 
 ## 2. Implementation Details
-
+- **Primitives Used:**
+  - `GL_QUADS`: Flag stripes and pole body
+  - `GL_POLYGON`: Shield shapes, golden ball, curved elements
+  - `GL_LINES`: Decorative rings and diagonal patterns on flagpole
+  - `GL_POINTS`: Rivets/studs decoration along the flagpole
 - **High-Resolution Primitives:** All curved shapes are constructed using `GL_POLYGON` with high-resolution sampling (100 steps per curve segment) to ensure smooth edges without jagged artifacts.
 - **Superellipse Geometry:** The iconic Maasai shield shape is generated mathematically using the superellipse formula:
   $$width = maxWidth \times (1 - |t|^P)^{(1/P)}$$
