@@ -304,3 +304,22 @@ void reshape(int w, int h) {
     glMatrixMode(GL_MODELVIEW);
 }
 
+int main(int argc, char** argv) {
+    glutInit(&argc, argv);
+    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_MULTISAMPLE);
+    glutInitWindowSize(1000, 800);
+    glutCreateWindow("OpenGL Project: Kenya Flag & TikTok (Backspace to Switch)");
+
+    glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+    glutDisplayFunc(display);
+    glutReshapeFunc(reshape);
+    glutKeyboardFunc(keyboard); // Keyboard registration
+    glutIdleFunc(idle);
+    glutMainLoop();
+    return 0;
+}
+
+
